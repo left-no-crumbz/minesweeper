@@ -2,8 +2,8 @@ import './App.css'
 import { useState } from 'react';
 
 const imageUrls = [
-  'src/assets/banana.png',
-  'src/assets/chicken.png',
+  'public/banana.png',
+  'public/chicken.png',
 ]
 
 function getRandomImage() {
@@ -12,6 +12,7 @@ function getRandomImage() {
 }
 
 function App() {
+  const [losingPlayer, setLosingPlayer] = useState('');
   const [player, setPlayer] = useState('Chicken');
   const [score, setScore] = useState({ Chicken: 0, Banana: 0 });
   const [images, setImages] = useState(Array(36).fill().map(getRandomImage));
@@ -33,7 +34,7 @@ function App() {
         return { ...prev, [player]: currentScore + 1 };
       } else {
         setGameOver(true);
-        console.log('Game Over! You clicked the wrong tile.');
+        setLosingPlayer(player);
         return { ...prev, [player]: currentScore };
       }
       
@@ -86,6 +87,7 @@ function App() {
       {gameOver && (
         <div className='game-over-banner'>
           <h2>Game Over!</h2>
+          <p><b>{losingPlayer}</b> player clicked the wrong tile!</p>
           <button onClick={() => {
             setPlayer('Chicken');
             setScore({ Chicken: 0, Banana: 0 });
