@@ -1,9 +1,11 @@
 import './App.css'
 import { useState } from 'react';
+import bananaImage from '../public/banana.png';
+import chickenImage from '../public/chicken.png';
 
 const imageUrls = [
-  'public/banana.png',
-  'public/chicken.png',
+  bananaImage,
+  chickenImage,
 ]
 
 function getRandomImage() {
